@@ -1,66 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ofentse Me | Backend Developer & AI Enthusiast</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .repo-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .repo-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
-  </style>
-</head>
-<body class="bg-gray-900 text-white font-sans">
-  <div class="min-h-screen flex flex-col items-center justify-center px-4">
-    <header class="text-center mb-8 animate-fadeIn">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-md">Crafting Code. Building Intelligence.</h1>
-      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-        I'm a backend developer passionate about AI and machine learning. I hold an Honours degree in Computer Science and certifications in Azure Fundamentals and AWS Cloud Practitioner.
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ofentse Me | Backend Developer & AI Enthusiast</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #0f0f0f;
+        color: #ffffff;
+        transition: opacity 1s ease-in-out;
+        opacity: 0;
+      }
+      .fade-in {
+        opacity: 1;
+      }
+      .glow-button {
+        background: linear-gradient(90deg, #3b82f6, #9333ea);
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px;
+        box-shadow: 0 0 25px rgba(147, 51, 234, 0.5);
+        transition: all 0.3s ease;
+      }
+      .glow-button:hover {
+        box-shadow: 0 0 45px rgba(59, 130, 246, 0.8);
+        transform: scale(1.05);
+      }
+      .card {
+        background: #1a1a1a;
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        background: #202020;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body class="fade-in">
+    <main class="min-h-screen px-6 pt-24 pb-12 text-center">
+      <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+        👨🏾‍💻 Ofentse Me
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+        Backend Developer | AI & Machine Learning Enthusiast<br>
+        Honours in Computer Science | Azure Fundamentals | AWS Cloud Practitioner
       </p>
-      <a href="assets/cv.pdf" download class="mt-6 inline-block bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 text-white py-2 px-5 rounded-xl shadow-lg transition duration-300">Download CV</a>
-    </header>
+      <div class="mt-8">
+        <a href="assets/cv.pdf" download class="glow-button">Download CV</a>
+      </div>
 
-    <section class="w-full max-w-5xl">
-      <h2 class="text-2xl font-semibold mb-6 border-b border-gray-700 pb-2 text-center">GitHub Repositories</h2>
-      <div id="repos" class="grid md:grid-cols-2 gap-6"></div>
-    </section>
-  </div>
+      <section class="mt-20">
+        <h2 class="text-3xl font-semibold mb-10">🧠 My GitHub Projects</h2>
+        <div id="repos" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-2"></div>
+      </section>
+    </main>
 
-  <footer class="text-center py-6 text-gray-500 text-sm">
-    &copy; <span id="year"></span> Ofentse Me. All rights reserved.
-  </footer>
+    <footer class="text-center text-sm text-gray-500 mt-12">
+      &copy; <span id="year"></span> Ofentse Menwe • Made with 💻 + ☕
+    </footer>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.body.style.opacity = 1;
-    });
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('fade-in');
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    fetch("https://api.github.com/users/OfentseMe/repos?sort=updated")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("repos");
-        data.forEach(repo => {
-          const card = document.createElement("div");
-          card.className = "repo-card p-5 bg-gray-800 rounded-2xl shadow-md hover:shadow-xl";
-          card.innerHTML = `
-            <h3 class="text-xl font-semibold text-blue-400 mb-1">${repo.name}</h3>
-            <p class="text-sm text-gray-400 mb-2">${repo.description || 'No description'}</p>
-            <a href="${repo.html_url}" target="_blank" class="text-sm text-blue-300 hover:underline">View on GitHub</a>
-          `;
-          container.appendChild(card);
-        });
+        fetch("https://api.github.com/users/OfentseMe/repos?sort=updated")
+          .then(res => res.json())
+          .then(data => {
+            const container = document.getElementById("repos");
+            data.forEach(repo => {
+              const card = document.createElement("div");
+              card.className = "card text-left";
+              card.innerHTML = `
+                <h3 class="text-lg font-bold text-blue-400 mb-1">${repo.name}</h3>
+                <p class="text-sm text-gray-400 mb-3">${repo.description || 'No description'}</p>
+                <a href="${repo.html_url}" target="_blank" class="text-sm text-blue-300 hover:underline">View on GitHub →</a>
+              `;
+              container.appendChild(card);
+            });
+          });
       });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
