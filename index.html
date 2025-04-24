@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ofentse Me | Backend Developer & AI Enthusiast</title>
+    <title>Ofentse Menwe | Backend Developer & AI Enthusiast</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -45,14 +45,14 @@
   <body class="fade-in">
     <main class="min-h-screen px-6 pt-24 pb-12 text-center">
       <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
-        👨🏾‍💻 Ofentse Me
+        👨🏾‍💻 Ofentse Menwe
       </h1>
       <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-        Backend Developer | AI & Machine Learning Enthusiast<br>
+        Software Engineer | AI & Machine Learning Enthusiast<br>
         Honours in Computer Science | Azure Fundamentals | AWS Cloud Practitioner
       </p>
       <div class="mt-8">
-        <a href="assets/cv.pdf" download class="glow-button">Download CV</a>
+        <a href="assets/OfentseMenwe.pdf" download class="glow-button">Download CV</a>
       </div>
 
       <section class="mt-20">
@@ -74,7 +74,8 @@
           .then(res => res.json())
           .then(data => {
             const container = document.getElementById("repos");
-            data.forEach(repo => {
+              data.forEach(repo => {
+              if (repo.name === "OfentseMe.github.io") return; // exclude the current portfolio repo
               const card = document.createElement("div");
               card.className = "card text-left";
               card.innerHTML = `
