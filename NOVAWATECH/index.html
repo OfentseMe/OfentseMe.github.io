@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Strategy to Prevent Pipe Bursts</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; line-height: 1.6; background: #f9f9f9; color: #333; }
+    h1, h2 { color: #1a73e8; }
+    pre { background: #efefef; padding: 1rem; overflow-x: auto; border-left: 4px solid #1a73e8; }
+    code { font-family: Consolas, monospace; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+    table, th, td { border: 1px solid #ccc; padding: 0.5rem; }
+    th { background-color: #e0e0e0; }
+    .section { margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>AI-Driven Strategy to Prevent Water Pipe Bursts</h1>
+  <p><strong>Presented by:</strong> [Your Startup Name] <br><strong>CTO:</strong> Ofentse Menwe</p>
+
+  <div class="section">
+    <h2>🌍 Vision Statement</h2>
+    <p>We aim to revolutionize water infrastructure management through an intelligent, AI-driven platform that prevents costly water pipe bursts by predicting risks, simulating failures, and automating responses.</p>
+  </div>
+
+  <div class="section">
+    <h2>📊 Strategic Overview</h2>
+    <ul>
+      <li>Predict high-risk pipes</li>
+      <li>Simulate failure scenarios</li>
+      <li>Enable proactive maintenance</li>
+      <li>Reduce downtime, water loss, and infrastructure damage</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🔬 Technical Strategy</h2>
+    <h3>1. Data Collection & IoT Integration</h3>
+    <ul>
+      <li>Sensors for pressure, flow, temperature</li>
+      <li>Stream data with MQTT or AWS IoT Core</li>
+      <li>Store in TimescaleDB or InfluxDB</li>
+    </ul>
+
+    <h3>2. Digital Twin Simulation</h3>
+    <pre><code>import wntr
+wn = wntr.network.WaterNetworkModel('city_network.inp')
+sim = wntr.sim.EpanetSimulator(wn)
+results = sim.run_sim()</code></pre>
+
+    <h3>3. Machine Learning for Burst Prediction</h3>
+    <pre><code>from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)</code></pre>
+    <p>Output: Burst Risk Score (High, Medium, Low)</p>
+    <div style="max-width:400px;border:1px solid #ccc;padding:1rem;border-radius:8px;">
+  <h3>💧 Burst Risk Calculator</h3>
+  <label>Pipe Age (years): <input id="age" type="number"></label><br>
+  <label>Max Pressure (psi): <input id="pressure" type="number"></label><br>
+  <label>Pipe Material:
+    <select id="material">
+      <option value="PVC">PVC</option>
+      <option value="Steel">Steel</option>
+      <option value="Copper">Copper</option>
+    </select>
+  </label><br><br>
+  <button onclick="calcRisk()">Calculate Risk</button>
+  <p id="riskResult" style="font-weight:bold;"></p>
+</div>
+
+<script>
+function calcRisk() {
+  const age = +document.getElementById('age').value;
+  const pres = +document.getElementById('pressure').value;
+  const mat = document.getElementById('material').value;
+
+  let score = 0;
+  if (age > 50) score++;
+  if (pres > 120) score++;
+  if (mat === 'Steel') score++;
+  
+  const risk = score >= 2 ? '🟥 High' : score === 1 ? '🟧 Medium' : '🟩 Low';
+  document.getElementById('riskResult').textContent = `Risk Level: ${risk}`;
+}
+</script>
+
+
+    <h3>4. Real-Time Scoring Engine</h3>
+    <p>Use FastAPI to serve the model and score live data streams</p>
+
+    <h3>5. Alerting & Visualization</h3>
+    <ul>
+      <li>Grafana for dashboards</li>
+      <li>Folium/ArcGIS for mapping risk zones</li>
+      <li>SMS/Email/WhatsApp alerts</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🚀 Value Proposition</h2>
+    <p><strong>Reduce pipe failures by up to 70%</strong> through proactive AI-driven maintenance. Improve infrastructure resilience and reduce costs.</p>
+  </div>
+
+  <div class="section">
+    <h2>📚 Technology Stack</h2>
+    <table>
+      <tr><th>Layer</th><th>Tools/Tech</th></tr>
+      <tr><td>Simulation</td><td>EPANET, WNTR</td></tr>
+      <tr><td>Machine Learning</td><td>scikit-learn, XGBoost</td></tr>
+      <tr><td>Data Pipeline</td><td>MQTT, Kafka, Python</td></tr>
+      <tr><td>Storage</td><td>TimescaleDB, InfluxDB</td></tr>
+      <tr><td>Visualization</td><td>Grafana, ArcGIS, Folium</td></tr>
+      <tr><td>API Deployment</td><td>FastAPI, Docker</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>💡 Next Steps</h2>
+    <ol>
+      <li>Identify pilot municipality/network</li>
+      <li>Build network model and collect data</li>
+      <li>Train and validate ML model</li>
+      <li>Launch MVP with alerting and dashboard</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>🙌 Let’s Build Resilient Cities</h2>
+    <p>Prevent disasters before they occur. <br><a href="#">Contact us to collaborate</a> or <a href="#">Request a demo</a>.</p>
+  </div>
+
+  <p><em>All simulations and models are reproducible using open-source Python libraries and standard hydraulic datasets.</em></p>
+</body>
+</html>
